@@ -1,1 +1,17 @@
+on:
+  issues:
+  issue_comment:
 
+env:
+  GITHUB_TOKEN: ${{ SECRETS.GH_PERSONAL_ACCESS_TOKEN }}
+  
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run the typescript action
+      uses: Maximisch/issue-sync-action@v1.0
+      with:
+        repo_target: "s-bconsulting/LittlerFrance" # The target repository
+        only_sync_on_label: "sync" # Only syncs issues with this label set
+        only_sync_main_issue: false # Excludes comments
